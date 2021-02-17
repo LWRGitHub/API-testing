@@ -5,7 +5,7 @@ This is code writen to test an API for messages.
 ## Tecnologies Used
 - Node.js
 - JavaScript
-- Chia
+- Chai
 - Mocha
 - nodemon
 - espress
