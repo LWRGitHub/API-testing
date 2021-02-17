@@ -37,15 +37,15 @@ describe('Message API endpoints', () => {
       })
 
     beforeEach((done) => {
-        const message1 = new Message({
+        const message = new Message({
             title:"Some Title",
             body: 'Some body',
             author: user._id,
             _id: SAMPLE_OBJECT_ID
         })
         user.save().then(
-            sampleMessage.save()
-            .then(messages=> SAMPLE_OBJECT_ID=message._id)
+            message.save()
+            .then(message1=> SAMPLE_OBJECT_ID=message1._id)
         ).then(
             done()
         ).catch(err => {
@@ -55,7 +55,7 @@ describe('Message API endpoints', () => {
     })
 
     afterEach((done) => {
-        user.deleteMany({ username: ['Logan']}).then(() =>{
+        User.deleteMany({ username: ['Logan']}).then(() =>{
             Message.deleteMany({ title: "Some Title"})
             .then(() =>{
                 done()
