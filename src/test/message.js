@@ -12,7 +12,7 @@ const Message = require('../models/message.js')
 chai.config.includeStack = true
 
 const expect = chai.expect
-const should = chai.should
+const should = chai.should()
 chai.use(chaiHttp)
 const agent = chai.request.agent(app)
 
@@ -33,7 +33,8 @@ let SAMPLE_OBJECT_ID_2 = '0987654321'
 describe('Message API endpoints', () => {
     const user = new User({
         username: 'Logan',
-        password: '000'
+        password: '000',
+        _id: SAMPLE_OBJECT_ID_2
       })
 
     beforeEach((done) => {
@@ -45,7 +46,7 @@ describe('Message API endpoints', () => {
         })
         user.save().then(
             message.save()
-            .then(message1=> SAMPLE_OBJECT_ID=message1._id)
+            .then(message1=> message._id=message1._id)
         ).then(
             done()
         ).catch(err => {
