@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const assert = chai.assert
-const agent = chai.request.agent(app)
+// const agent = chai.request.agent(app)
 
 const User = require('../models/user.js')
 const Message = require('../models/message.js')
@@ -12,7 +12,7 @@ const Message = require('../models/message.js')
 chai.config.includeStack = true
 
 const expect = chai.expect
-const should = chai.should()
+const should = chai.should
 chai.use(chaiHttp)
 
 /**
