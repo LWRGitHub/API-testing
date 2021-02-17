@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const assert = chai.assert
-// const agent = chai.request.agent(app)
+
 
 const User = require('../models/user.js')
 const Message = require('../models/message.js')
@@ -14,6 +14,7 @@ chai.config.includeStack = true
 const expect = chai.expect
 const should = chai.should
 chai.use(chaiHttp)
+const agent = chai.request.agent(app)
 
 /**
  * root level hooks
@@ -30,10 +31,10 @@ let SAMPLE_OBJECT_ID = '1234567890'
 let SAMPLE_OBJECT_ID_2 = '0987654321'
 
 describe('Message API endpoints', () => {
-    const user = {
+    const user = new User({
         username: 'Logan',
         password: '000'
-      };
+      })
 
     beforeEach((done) => {
         const message1 = new Message({
@@ -54,7 +55,7 @@ describe('Message API endpoints', () => {
     })
 
     afterEach((done) => {
-        User.deleteMany({ username: ['Logan']}).then(() =>{
+        user.deleteMany({ username: ['Logan']}).then(() =>{
             Message.deleteMany({ title: "Some Title"})
             .then(() =>{
                 done()
