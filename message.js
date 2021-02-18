@@ -27,22 +27,21 @@ after((done) => {
   done()
 })
 
-let SAMPLE_OBJECT_ID = '1234567890'
-let SAMPLE_OBJECT_ID_2 = '0987654321'
+let SAMPLE_OBJECT_ID = 'cccccccccccc'
+let SAMPLE_OBJECT_ID_2 = 'eeeeeeeeeeee'
 
 describe('Message API endpoints', () => {
-    const user = new User({
-        username: 'Logan',
-        password: '000',
-        _id: SAMPLE_OBJECT_ID_2
-      })
-
     beforeEach((done) => {
+        const user = new User({
+            username: 'Logan',
+            password: '000',
+            _id: SAMPLE_OBJECT_ID
+          })
         const message = new Message({
             title:"Some Title",
             body: 'Some body',
             author: user._id,
-            _id: SAMPLE_OBJECT_ID
+            _id: SAMPLE_OBJECT_ID_2
         })
         user.save().then(
             message.save()
@@ -56,8 +55,8 @@ describe('Message API endpoints', () => {
     })
 
     afterEach((done) => {
-        User.deleteMany({ username: ['Logan']}).then(() =>{
-            Message.deleteMany({ title: "Some Title"})
+        User.remove({}).then(() =>{
+            Message.remove({})
             .then(() =>{
                 done()
             })
