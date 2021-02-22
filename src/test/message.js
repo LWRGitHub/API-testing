@@ -31,6 +31,8 @@ let SAMPLE_OBJECT_ID = 'cccccccccccc'
 let SAMPLE_OBJECT_ID_2 = 'eeeeeeeeeeee'
 
 describe('Message API endpoints', () => {
+    // this.timeout(0)
+
     beforeEach((done) => {
         const user = new User({
             username: 'Logan',
